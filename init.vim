@@ -1,0 +1,1 @@
+/home/jpacs/.config/nvim/init.vim
