@@ -98,6 +98,7 @@ alias nf='neofetch'
 ## git shortcuts
 ###################
 alias gits='git status'
+alias gitp='gt && git push'
 alias gt='head ~/gittoken | xclip -selection c'
 #################
 ## systemctl
@@ -161,8 +162,3 @@ extract () {
         echo "'$1' is not a valid file!"
     fi
 }
-
-#[[ -f ~/.config/bash/nav.sh ]] && . ~/.config/bash/nav.sh
-#[[ -f ~/.config/bash/pacman.sh ]] && . ~/.config/bash/pacman.sh
-#[[ -f ~/.config/bash/prompt.sh ]] && . ~/.config/bash/prompt.sh
-#[[ -f ~/.config/bash/other.sh ]] && . ~/.config/bash/other.sh
