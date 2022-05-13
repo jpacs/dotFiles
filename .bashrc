@@ -98,6 +98,7 @@ alias nf='neofetch'
 ## git shortcuts
 ###################
 alias gits='git status'
+alias gt='head ~/gittoken | xclip -selection c'
 #################
 ## systemctl
 ###################

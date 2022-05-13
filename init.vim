@@ -52,18 +52,21 @@ call plug#begin()
     Plug 'kyazdani42/nvim-web-devicons'
     Plug 'dylanaraps/wal.vim'
     Plug 'rktjmp/lush.nvim'
-    Plug '~/Dev/wallush'
+    Plug 'jpacs/wallush'
     Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
 "colorscheme
+lua << END
+    -- require('wallush/colors')
+END
 colorscheme wallush
 " shortcuts/remaps
 " reload/edit config and theme files
-nnoremap <silent> <Leader><Leader> :source $MYVIMRC<CR>
+nnoremap <silent> <Leader><Leader> :source $MYVIMRC<bar>lua print(' Config File Reloaded ')<CR>
 nnoremap <silent> <Leader>c :e $MYVIMRC<CR> 
-nnoremap <silent> <Leader>c<Leader>v :tabnew $MYVIMRC<CR> 
-nnoremap <silent> <Leader>c<Leader>t :tabnew ~/Dev/wal-lush/lua/lush_theme/wal-lush.lua<CR> 
+nnoremap <silent> <Leader>cv :tabnew $MYVIMRC<CR> 
+nnoremap <silent> <Leader>ct :tabnew ~/Dev/wallush/lua/lush_theme/wallush.lua<CR> 
 " shortcuts
 nnoremap <Leader>e <Esc>:e<Space>
 nnoremap <Leader>b <Esc>:b<Space>
@@ -163,7 +166,7 @@ require('lualine').setup {
 }
 
 -- vim.opt.list = true
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 -- vim.opt.listchars:append("eol:↴")
 
 -- indent_blankline setup
