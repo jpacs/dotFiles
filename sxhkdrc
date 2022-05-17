@@ -63,8 +63,11 @@ super + {p,b,comma,period}
 # 	bspc wm -h off; \
 # 	bspc node {older,newer} -f; \
 # 	bspc wm -h on
-super + {_,shift + } {1,4,7,2,5,8,3,6,9}
+#super + {_,shift + } {1,4,7,2,5,8,3,6,9}
+#	bspc {desktop -f, node -d} '^{1-9}'
+super + {_,shift + } {1-9}
 	bspc {desktop -f, node -d} '^{1-9}'
+
 
 #
 # preselect

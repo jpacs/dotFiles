@@ -1,11 +1,11 @@
 #! /bin/sh
 pgrep -x sxhkd > /dev/null || sxhkd &
 
-#bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV V VI VII VIII IX
 
-bspc monitor DVI-D-0 -d ● ● ●
-bspc monitor HDMI-0 -d ● ● ●
-bspc monitor DVI-D-1 -d ● ● ●
+#bspc monitor DVI-D-0 -d ● ● ●
+#bspc monitor HDMI-0 -d ● ● ●
+#bspc monitor DVI-D-1 -d ● ● ●
 
 # source the colors.
 # . "${HOME}/.cache/wal/colors.sh"
@@ -31,4 +31,5 @@ bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
-bspc monitor -f HDMI-0
+#bspc monitor -f HDMI-0
+bspc monitor -f HDMI-2

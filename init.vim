@@ -85,6 +85,9 @@ nnoremap <silent> <Leader>l <Esc>:tabnext<CR>
 nnoremap <c-z> <nop>
 set mouse=a
 inoremap <silent> <RightMouse> <CR>
+nnoremap <HOME> ^
+nnoremap <PageUp> 15k
+nnoremap <PageDown> 15j
 
 " emmet
 "let g:user_emmet_leader_key='<C-K>'

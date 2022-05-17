@@ -11,6 +11,7 @@ if [[ "$1"  ]]; then
             cp ~/.config/kitty/kitty.conf kitty.conf
             cp ~/.config/nvim/init.vim init.vim
             cp ~/.config/picom/picom.conf picom.conf
+            cp ~/.Xresources Xresources
         ;;
         -up )
             cp bashrc ~/.bashrc 
@@ -19,6 +20,7 @@ if [[ "$1"  ]]; then
             cp kitty.conf ~/.config/kitty/kitty.conf
             cp init.vim ~/.config/nvim/init.vim
             cp picom.conf ~/.config/picom/picom.conf
+            cp Xresources ~/.Xresources
 
         ;;
     esac
