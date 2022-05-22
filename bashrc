@@ -6,6 +6,8 @@
 (cat ~/.cache/wal/sequences &)
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
+printf '\e[33m%s\n\n\t\e[0m' "   /====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====/"
+motivate
 ###################
 #  prompt
 ###################
@@ -57,15 +59,10 @@ alias yays='yay -S'
 ###################
 alias ls='ls -x --color=always'
 alias la='ls -xA'
-alias ll='ls -lhA'
+alias ll='ls -lh'
+alias lla='ls -lhA'
 alias lls='ls -lhAS'
 alias lt='ls -lhArt'
-###################
-## bash/terminal clean and configs
-###################
-alias cl='clear'
-alias rst='cl ; exec bash'
-alias brc='vim ~/.bashrc'
 ##################
 ## folder/file/bash_history/cd navigation
 ###################
@@ -76,30 +73,38 @@ open() {
   xdg-open "$(find -type f | fzf)"
 }
 alias getpath="find -type f | fzf | sed 's/^..//' | tr -d '\n' | xclip -selection c"
-alias hist="cat ~/.bash_history | fzf | tr -d '\n' | xclip -selection c"
+alias h="cat ~/.bash_history | fzf | tr -d '\n' | xclip -selection c"
 alias cdr='cd /'
 alias cd.='cd ..'
 ##################
 ## shortcuts and config shortcuts
 ###################
+alias cl='clear'
+alias rst='cl ; exec bash'
+alias brc='v ~/.bashrc'
 alias r='ranger'
 alias nn='nano'
 alias snn='sudo nano'
-alias vim='nvim'
-alias vimrc='vim ~/.config/nvim/init.vim'
+alias v='nvim'
+alias vrc='v ~/.config/nvim/init.vim'
 alias cleanvim='rm -r ~/.local/share/nvim/swap/*'
 alias poly='~/.config/polybar/launch.sh'
-alias cpoly='vim ~/.config/polybar/launch.sh'
-alias ckitty='vim ~/.config/kitty/kitty.conf'
+alias cpoly='v ~/.config/polybar/config.ini'
+alias ck='v ~/.config/kitty/kitty.conf'
 alias kc="kitty @ set-colors --all --configured -c ~/.config/kitty/kitty.conf"
-alias cwall='vim ~/.config/polybar/scripts/pywal.sh'
+alias cwall='v ~/.config/polybar/scripts/pywal.sh'
 alias nf='neofetch'
+alias avr8='sudo pacman -U file:///var/cache/pacman/pkg/avr-gcc-8.3.0-1-x86_64.pkg.tar.xz'
+alias avr12='sudo pacman -U file:///var/cache/pacman/pkg/avr-gcc-12.1.0-1-x86_64.pkg.tar.zst'
+alias eqmk='cd ~/Dev/qmk_firmware/ && v keyboards/crkbd/keymaps/xsloth'
+alias cqmk='qmk compile'
+alias cdqmk='cd ~/Dev/qmk_firmware'
 ##################
 ## git shortcuts
 ###################
 alias gits='git status'
 alias gitp='gt && git push'
-alias gt='head ~/gittoken | xclip -selection c'
+alias gt='head ~/Documents/gittoken | xclip -selection c'
 #################
 ## systemctl
 ###################
@@ -126,6 +131,7 @@ alias nrb='npm run build'
 ###################
 alias laypt='setxkbmap -model pc105 -layout pt'
 alias layus='setxkbmap -model pc105 -layout us'
+alias layint='setxkbmap -model pc105 -layout us -variant intl'
 ###################
 #directories
 ###################

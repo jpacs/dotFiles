@@ -70,14 +70,17 @@ nnoremap <silent> <Leader>ct :tabnew ~/Dev/wallush/lua/lush_theme/wallush.lua<CR
 " shortcuts
 nnoremap <Leader>e <Esc>:e<Space>
 nnoremap <Leader>b <Esc>:b<Space>
+nnoremap <Leader>rr <Esc>:%s/
 nnoremap <silent> <Leader>s <Esc>:update<CR>
 nnoremap <silent> <Leader>d :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>w <Esc>:w<bar>q<CR>
 nnoremap <silent> <Leader>q <Esc>:w<bar>bd<CR>
+nnoremap <silent> <Leader>bd <Esc>:bd<CR>
 nnoremap <silent> <Leader>qq <Esc>:bd<CR>
+nnoremap <silent> <Leader><Esc> <Esc>:noh<CR>
 " folding
-nnoremap <silent> <Leader>mv :mkview<bar>lua print(vim.fn.expand('%:t'),' - View file created')<CR> 
-nnoremap <silent> <Leader>lv :loadview<bar>lua print(vim.fn.expand('%:t'),' - View file loaded')<CR> 
+nn <silent> <Leader>mv :mkview<bar>lua print(vim.fn.expand('%:t'),' - View file created')<CR> 
+nn <silent> <Leader>lv :loadview<bar>lua print(vim.fn.expand('%:t'),' - View file loaded')<CR> 
 
 nnoremap <silent> <Leader>h <Esc>:tabprevious<CR>
 nnoremap <silent> <Leader>l <Esc>:tabnext<CR>
@@ -86,8 +89,8 @@ nnoremap <c-z> <nop>
 set mouse=a
 inoremap <silent> <RightMouse> <CR>
 nnoremap <HOME> ^
-nnoremap <PageUp> 15k
-nnoremap <PageDown> 15j
+nnoremap <A-k> 10k
+nnoremap <A-j> 10j
 
 " emmet
 "let g:user_emmet_leader_key='<C-K>'
