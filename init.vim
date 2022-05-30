@@ -50,16 +50,11 @@ call plug#begin()
     "UI THEME
     Plug 'nvim-lualine/lualine.nvim'
     Plug 'kyazdani42/nvim-web-devicons'
-    Plug 'dylanaraps/wal.vim'
     Plug 'rktjmp/lush.nvim'
     Plug 'jpacs/wallush'
     Plug 'lukas-reineke/indent-blankline.nvim'
 call plug#end()
 
-"colorscheme
-lua << END
-    -- require('wallush/colors')
-END
 colorscheme wallush
 " shortcuts/remaps
 " reload/edit config and theme files
@@ -89,8 +84,10 @@ nnoremap <c-z> <nop>
 set mouse=a
 inoremap <silent> <RightMouse> <CR>
 nnoremap <HOME> ^
-nnoremap <A-k> 10k
-nnoremap <A-j> 10j
+nnoremap <A-h> 6h
+nnoremap <A-k> 6k
+nnoremap <A-j> 6j
+nnoremap <A-l> 6l
 
 " emmet
 "let g:user_emmet_leader_key='<C-K>'

@@ -13,6 +13,8 @@ if [[ "$1"  ]]; then
             cp ~/.config/picom/picom.conf picom.conf
             cp ~/.Xresources Xresources
             cp ~/.local/bin/bright.sh ~/Dev/dotFiles/scripts/
+            cp ~/.local/bin/wallcycle.sh ~/Dev/dotFiles/scripts/
+            cp ~/.local/bin/cpu-temp.sh ~/Dev/dotFiles/scripts/
         ;;
         -up )
             cp bashrc ~/.bashrc 
@@ -22,7 +24,9 @@ if [[ "$1"  ]]; then
             cp init.vim ~/.config/nvim/init.vim
             cp picom.conf ~/.config/picom/picom.conf
             cp Xresources ~/.Xresources
-            cp ~/Dev/dotFiles/scripts/ ~/.local/bin/bright.py
+            cp ~/Dev/dotFiles/scripts/ ~/.local/bin/bright.sh
+            cp ~/Dev/dotFiles/scripts/ ~/.local/bin/wallcycle.sh
+            cp ~/Dev/dotFiles/scripts/ ~/.local/bin/cpu-temp.sh
         ;;
     esac
 fi

@@ -2,12 +2,23 @@
 # ~/.bashrc
 #
 
+. /usr/share/doc/ranger/examples/shell_automatic_cd.sh
 # autoload at start pywall terminal colors
 (cat ~/.cache/wal/sequences &)
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
-printf '\e[33m%s\n\n\t\e[0m' "   /====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====//=//=//====/"
+columns=$(tput cols)
+mod=`awk -v v1=$columns 'BEGIN { a = v1; print ( (a%15) ) }'`
+columns=`awk -v v1=$columns -v v2=$mod 'BEGIN { a = v1; b = v2; print ( a - b ) }'`
+np=`awk -v v1=$columns 'BEGIN { a = v1; print ( (a/15) ) }'`
+ms="   /===="
+for ((i = 0; i < $np; i++)); do
+    ms=$ms"//=//=//===="
+done
+ms=$ms"/"
+printf '\e[33m\n    %s\n\n\t\e[0m' $ms
 motivate
+printf '\e[33m\n    %s\n\n\t\e[0m' $ms
 ###################
 #  prompt
 ###################
@@ -37,7 +48,7 @@ $(pcp -b 3 '  \w ')\
 $(pcp -f 3 ' ')\
 '\n \[\033[38;5;3m\]   /==>> \[$(tput sgr0)\] '
 export PS1=$prompt
-
+export PS2='->  '
 ###PROMPT_COMMAND='echo -en "\033]0;New terminal title\a"'
 #    
 vava='test'
@@ -54,6 +65,9 @@ alias pac='sudo pacman -S'
 alias pacup='sudo pacman -Syu'
 alias yays='yay -S'
 ###################
+alias ssa='asciiquarium'
+alias ssm='cmatrix'
+alias ssp='pipes'
 ###################
 ## ls config
 ###################
@@ -82,28 +96,42 @@ alias cd.='cd ..'
 alias cl='clear'
 alias rst='cl ; exec bash'
 alias brc='v ~/.bashrc'
+#####
+alias bspwmrc='v .config/bspwm/bspwmrc'
+alias sxhkdrc='v .config/sxhkd/sxhkdrc'
+#####
 alias r='ranger'
+alias rrc='v ~/.config/ranger/rc.conf'
+alias rcd='ranger_cd'
+#####
 alias nn='nano'
 alias snn='sudo nano'
 alias v='nvim'
 alias vrc='v ~/.config/nvim/init.vim'
 alias cleanvim='rm -r ~/.local/share/nvim/swap/*'
+#####
 alias poly='~/.config/polybar/launch.sh'
 alias cpoly='v ~/.config/polybar/config.ini'
-alias ck='v ~/.config/kitty/kitty.conf'
 alias kc="kitty @ set-colors --all --configured -c ~/.config/kitty/kitty.conf"
+alias ck='v ~/.config/kitty/kitty.conf'
+alias wall='r Pictures/Wallpapers'
 alias cwall='v ~/.config/polybar/scripts/pywal.sh'
 alias nf='neofetch'
+#####
 alias avr8='sudo pacman -U file:///var/cache/pacman/pkg/avr-gcc-8.3.0-1-x86_64.pkg.tar.xz'
 alias avr12='sudo pacman -U file:///var/cache/pacman/pkg/avr-gcc-12.1.0-1-x86_64.pkg.tar.zst'
 alias eqmk='cd ~/Dev/qmk_firmware/ && v keyboards/crkbd/keymaps/xsloth'
-alias cqmk='qmk compile'
+alias cqmk='make crkbd/rev1:xsloth:dfu'
 alias cdqmk='cd ~/Dev/qmk_firmware'
 ##################
 ## git shortcuts
 ###################
-alias gits='git status'
-alias gitp='gt && git push'
+alias gaa='git add -all'
+alias ga='git add'
+alias gc='git commit -m'
+alias gca='git commit -a -m'
+alias gs='git status'
+alias gp='gt && git push'
 alias gt='head ~/Documents/gittoken | xclip -selection c'
 #################
 ## systemctl
