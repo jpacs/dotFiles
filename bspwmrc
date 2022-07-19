@@ -2,13 +2,6 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 bspc monitor -d I II III IV V VI VII VIII IX
-#bspc monitor HDMI-2 -d I II IV V VII VIII
-#bspc monitor HDMI-3 -d III VI IX
-
-
-#bspc monitor DVI-D-0 -d ● ● ●
-#bspc monitor HDMI-0 -d ● ● ●
-#bspc monitor DVI-D-1 -d ● ● ●
 
 # source the colors.
 # . "${HOME}/.cache/wal/colors.sh"
@@ -33,6 +26,4 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
-
-#bspc monitor -f HDMI-0
-#bspc monitor -f HDMI-2
+#bspc rule -a Kitty desktop='^6' state=floating rectangle="500x500+0+0" center=true && kitty ncmpcpp -s clock

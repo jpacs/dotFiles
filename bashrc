@@ -126,7 +126,7 @@ alias cdqmk='cd ~/Dev/qmk_firmware'
 ##################
 ## git shortcuts
 ###################
-alias gaa='git add -all'
+alias gaa='git add --all'
 alias ga='git add'
 alias gc='git commit -m'
 alias gca='git commit -a -m'
@@ -145,15 +145,20 @@ alias sr='sudo systemctl restart'
 ## web
 ###################
 alias webcd='cd /srv/http/; cd'
-alias webon='sudo systemctl start httpd mysqld'
-alias weboff='sudo systemctl stop httpd mysqld'
-alias webres='sudo systemctl restart httpd mysqld'
+alias weben='sudo systemctl enable httpd.service && sudo systemctl enable mariadb.service'
+alias webdis='sudo systemctl disable httpd.service && sudo systemctl disable mariadb.service'
+alias webon='sudo systemctl start httpd.service && sudo systemctl start mariadb.service'
+alias weboff='sudo systemctl stop httpd.service && sudo systemctl stop mariadb.service'
+alias webres='sudo systemctl restart httpd.service mariadb.service'
 ###################
 ## dev
 ###################
 alias npmi='sudo npm install'
 alias npmig='sudo npm install -g'
 alias nrb='npm run build'
+alias nxstart='systemctl enable nginx.service && systemctl start nginx.service'
+alias nxstop='systemctl stop nginx.service && systemctl disable nginx.service'
+alias nxc='v /etc/nginx/nginx.conf'
 ###################
 #keyboard layout
 ###################

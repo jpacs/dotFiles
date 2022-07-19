@@ -15,6 +15,8 @@ if [[ "$1"  ]]; then
             cp ~/.local/bin/bright.sh ~/Dev/dotFiles/scripts/
             cp ~/.local/bin/wallcycle.sh ~/Dev/dotFiles/scripts/
             cp ~/.local/bin/cpu-temp.sh ~/Dev/dotFiles/scripts/
+            cp ~/.local/bin/gpu-fan.sh ~/Dev/dotFiles/scripts/
+            cp ~/.local/bin/key-lay-switch.sh ~/Dev/dotFiles/scripts/
         ;;
         -up )
             cp bashrc ~/.bashrc 
@@ -27,6 +29,8 @@ if [[ "$1"  ]]; then
             cp ~/Dev/dotFiles/scripts/ ~/.local/bin/bright.sh
             cp ~/Dev/dotFiles/scripts/ ~/.local/bin/wallcycle.sh
             cp ~/Dev/dotFiles/scripts/ ~/.local/bin/cpu-temp.sh
+            cp ~/Dev/dotFiles/scripts/ ~/.local/bin/gpu-fan.sh
+            cp ~/Dev/dotFiles/scripts/ ~/.local/bin/key-lay-switch.sh
         ;;
     esac
 fi

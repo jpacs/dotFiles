@@ -39,6 +39,7 @@ call plug#begin()
     Plug 'neoclide/coc.nvim', {'branch':'release'}
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'tpope/vim-fugitive'
+    Plug 'tmhedberg/simpylfold'
 
     Plug 'othree/html5.vim'
     Plug 'pangloss/vim-javascript'
@@ -70,6 +71,7 @@ nnoremap <silent> <Leader>s <Esc>:update<CR>
 nnoremap <silent> <Leader>d :NERDTreeToggle<CR>
 nnoremap <silent> <Leader>w <Esc>:w<bar>q<CR>
 nnoremap <silent> <Leader>q <Esc>:w<bar>bd<CR>
+nnoremap <silent> <Leader><Leader>q <Esc>:q<CR>
 nnoremap <silent> <Leader>bd <Esc>:bd<CR>
 nnoremap <silent> <Leader>qq <Esc>:bd<CR>
 nnoremap <silent> <Leader><Esc> <Esc>:noh<CR>
