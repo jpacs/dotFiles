@@ -46,7 +46,7 @@ $(pcp -m 7 5 '  \t ')\
 $(pcp -m 5 3 ' ')\
 $(pcp -b 3 '  \w ')\
 $(pcp -f 3 ' ')\
-'\n \[\033[38;5;3m\]   /==>> \[$(tput sgr0)\] '
+'\n \[\033[38;5;3m\]   /====//==>> \[$(tput sgr0)\] '
 export PS1=$prompt
 export PS2='->  '
 ###PROMPT_COMMAND='echo -en "\033]0;New terminal title\a"'
@@ -57,6 +57,12 @@ function tc {
     echo -e $(pcp -i $i ' l ')
   done
 }
+alias box="WM=openbox startx"
+alias sx="startx"
+alias sn="shutdown now"
+alias rb="reboot"
+###################
+alias ytdl="cd /mnt/tera/Media/Downloads/ && youtube-dl -x --audio-format mp3"
 ###################
 #  pacman/yay
 ###################
@@ -64,10 +70,12 @@ alias spac='sudo pacman'
 alias pac='sudo pacman -S'
 alias pacup='sudo pacman -Syu'
 alias yays='yay -S'
+alias yayr='yay -Rns'
 ###################
 alias ssa='asciiquarium'
 alias ssm='cmatrix'
-alias ssp='pipes'
+alias ssp='pipes.sh'
+alias ssr='rain'
 ###################
 ## ls config
 ###################
@@ -96,13 +104,19 @@ alias cd.='cd ..'
 alias cl='clear'
 alias rst='cl ; exec bash'
 alias brc='v ~/.bashrc'
+alias rm='rm -i'
 #####
-alias bspwmrc='v .config/bspwm/bspwmrc'
-alias sxhkdrc='v .config/sxhkd/sxhkdrc'
+alias dots="cd Dev/dotFiles && v dot.sh"
+#####
+alias bsprc='v ~/.config/bspwm/bspwmrc'
+alias sxhrc='v ~/.config/sxhkd/sxhkdrc'
+alias bspwmrc='v ~/.config/bspwm/bspwmrc'
+alias sxhkdrc='v ~/.config/sxhkd/sxhkdrc'
 #####
 alias r='ranger'
 alias rrc='v ~/.config/ranger/rc.conf'
 alias rcd='ranger_cd'
+alias rww='ranger Pictures/Wallpapers/'
 #####
 alias nn='nano'
 alias snn='sudo nano'
@@ -114,14 +128,23 @@ alias poly='~/.config/polybar/launch.sh'
 alias cpoly='v ~/.config/polybar/config.ini'
 alias kc="kitty @ set-colors --all --configured -c ~/.config/kitty/kitty.conf"
 alias ck='v ~/.config/kitty/kitty.conf'
-alias wall='r Pictures/Wallpapers'
-alias cwall='v ~/.config/polybar/scripts/pywal.sh'
+alias wall='r ~/Pictures/Wallpapers'
+alias wallrc='v ~/.config/polybar/scripts/pywal.sh'
+alias cwall='~/.config/polybar/scripts/pywal.sh'
 alias nf='neofetch'
 #####
 alias avr8='sudo pacman -U file:///var/cache/pacman/pkg/avr-gcc-8.3.0-1-x86_64.pkg.tar.xz'
 alias avr12='sudo pacman -U file:///var/cache/pacman/pkg/avr-gcc-12.1.0-1-x86_64.pkg.tar.zst'
-alias eqmk='cd ~/Dev/qmk_firmware/ && v keyboards/crkbd/keymaps/xsloth'
-alias cqmk='make crkbd/rev1:xsloth:dfu'
+###################
+## qmk_firmware
+##################
+alias crkbd='cd ~/Dev/qmk_firmware/ && v keyboards/crkbd/keymaps/xsloth'
+alias cdcrk='cd ~/Dev/qmk_firmware/'
+alias kyria='cd ~/Dev/qmk_firmware/ && v keyboards/splitkb/kyria/keymaps/xsloth'
+alias cdkyr='cd ~/Dev/qmk_firmware/'
+alias ccrk='make crkbd/rev1:xsloth:dfu'
+alias cqmkn='make crkbd/rev1:xsloth_miryoku:dfu'
+alias ckyr='qmk compile -e CONVERT_TO=promicro_rp2040 -kb splitkb/kyria -km xsloth'
 alias cdqmk='cd ~/Dev/qmk_firmware'
 ##################
 ## git shortcuts
@@ -159,6 +182,12 @@ alias nrb='npm run build'
 alias nxstart='systemctl enable nginx.service && systemctl start nginx.service'
 alias nxstop='systemctl stop nginx.service && systemctl disable nginx.service'
 alias nxc='v /etc/nginx/nginx.conf'
+###################
+## stream
+###################
+alias cam='gphoto2 --stdout --capture-movie | ffmpeg -i - -vcodec rawvideo -pix_fmt yuv420p -threads 0 -f v4l2 /dev/video0'
+alias camdet='gphoto2 --auto-detect'
+alias camsum='gphoto2 --summary'
 ###################
 #keyboard layout
 ###################

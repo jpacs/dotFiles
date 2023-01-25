@@ -1,5 +1,6 @@
 #
-#  To use simply run ./dot -down to download files or -up to restore them
+#  To use simply run ./dot -down to get files from their sources
+#  or use -up to set them on a new installation or restoration
 #
 
 if [[ "$1"  ]]; then
@@ -11,6 +12,7 @@ if [[ "$1"  ]]; then
             cp ~/.config/kitty/kitty.conf kitty.conf
             cp ~/.config/nvim/init.vim init.vim
             cp ~/.config/picom/picom.conf picom.conf
+            cp ~/.config/dunst/dunstrc dunstrc
             cp ~/.Xresources Xresources
             cp ~/.local/bin/bright.sh ~/Dev/dotFiles/scripts/
             cp ~/.local/bin/wallcycle.sh ~/Dev/dotFiles/scripts/
@@ -25,6 +27,7 @@ if [[ "$1"  ]]; then
             cp kitty.conf ~/.config/kitty/kitty.conf
             cp init.vim ~/.config/nvim/init.vim
             cp picom.conf ~/.config/picom/picom.conf
+            cp dunst.conf ~/.config/dunst/dunstrc
             cp Xresources ~/.Xresources
             cp ~/Dev/dotFiles/scripts/ ~/.local/bin/bright.sh
             cp ~/Dev/dotFiles/scripts/ ~/.local/bin/wallcycle.sh

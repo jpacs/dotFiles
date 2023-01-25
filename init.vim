@@ -7,6 +7,7 @@
 " zc close fold
 
 " neovim options
+let mapleader=" "
 set path+=**
 set wildmenu
 set title titlestring=%F
@@ -18,13 +19,14 @@ set autoindent
 set number
 set cursorline
 set cc=80
+set rnu
 
 set tabstop=4
 set expandtab
 set shiftwidth=4
 set softtabstop=4
 set termguicolors
-
+set scrolloff=16
 " set listchars
 
 " load plugins
@@ -34,9 +36,13 @@ endif
 
 "plugins loading
 call plug#begin()
+    Plug 'glepnir/dashboard-nvim'
     Plug 'scrooloose/nerdtree'
 
-    Plug 'neoclide/coc.nvim', {'branch':'release'}
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+    Plug 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
+
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'tpope/vim-fugitive'
     Plug 'tmhedberg/simpylfold'
@@ -57,24 +63,34 @@ call plug#begin()
 call plug#end()
 
 colorscheme wallush
+nnoremap <Space> <Nop>
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" PlugManagement
+nnoremap <leader>pu <cmd>PlugUpdate<cr>
 " shortcuts/remaps
 " reload/edit config and theme files
 nnoremap <silent> <Leader><Leader> :source $MYVIMRC<bar>lua print(' Config File Reloaded ')<CR>
 nnoremap <silent> <Leader>c :e $MYVIMRC<CR> 
 nnoremap <silent> <Leader>cv :tabnew $MYVIMRC<CR> 
 nnoremap <silent> <Leader>ct :tabnew ~/Dev/wallush/lua/lush_theme/wallush.lua<CR> 
+nnoremap <silent> <Leader>pu :PlugUpdate<CR> 
 " shortcuts
 nnoremap <Leader>e <Esc>:e<Space>
 nnoremap <Leader>b <Esc>:b<Space>
 nnoremap <Leader>rr <Esc>:%s/
 nnoremap <silent> <Leader>s <Esc>:update<CR>
 nnoremap <silent> <Leader>d :NERDTreeToggle<CR>
-nnoremap <silent> <Leader>w <Esc>:w<bar>q<CR>
+nnoremap <silent> <Leader>w <Esc>:w<CR>
 nnoremap <silent> <Leader>q <Esc>:w<bar>bd<CR>
 nnoremap <silent> <Leader><Leader>q <Esc>:q<CR>
 nnoremap <silent> <Leader>bd <Esc>:bd<CR>
 nnoremap <silent> <Leader>qq <Esc>:bd<CR>
 nnoremap <silent> <Leader><Esc> <Esc>:noh<CR>
+"inoremap <silent> jk <Esc>
 " folding
 nn <silent> <Leader>mv :mkview<bar>lua print(vim.fn.expand('%:t'),' - View file created')<CR> 
 nn <silent> <Leader>lv :loadview<bar>lua print(vim.fn.expand('%:t'),' - View file loaded')<CR> 
@@ -86,10 +102,13 @@ nnoremap <c-z> <nop>
 set mouse=a
 inoremap <silent> <RightMouse> <CR>
 nnoremap <HOME> ^
-nnoremap <A-h> 6h
-nnoremap <A-k> 6k
-nnoremap <A-j> 6j
-nnoremap <A-l> 6l
+nnoremap <A-h> 5h
+nnoremap <A-j> 5j
+nnoremap <C-A-j> 10j
+nnoremap <A-k> 5k
+nnoremap <C-A-k> 10k
+nnoremap <A-l> 5l
+nnoremap x "_x
 
 " emmet
 "let g:user_emmet_leader_key='<C-K>'
@@ -100,12 +119,52 @@ let g:NERDTreeQuitOnOpen = 1
 let g:NERDTreeMinimalUI = 0
 let g:NERDTreeIgnore = ['node_modules']
 let NERDTreeStatusLine='NerdTree'
-" CoC Svelte
-let g:svelte_indent_script = 0
-let g:svelte_indent_style = 0
-
 
 lua << END
+local db = require'dashboard'
+db.custom_header = {
+  '               ▄▄██████████▄▄             ',
+  '               ▀▀▀   ██   ▀▀▀             ',
+  '       ▄██▄   ▄▄████████████▄▄   ▄██▄     ',
+  '     ▄███▀  ▄████▀▀▀    ▀▀▀████▄  ▀███▄   ',
+  '    ████▄ ▄███▀              ▀███▄ ▄████  ',
+  '   ███▀█████▀▄████▄      ▄████▄▀█████▀███ ',
+  '   ██▀  ███▀ ██████      ██████ ▀███  ▀██ ',
+  '    ▀  ▄██▀  ▀████▀  ▄▄  ▀████▀  ▀██▄  ▀  ',
+  '       ███           ▀▀           ███     ',
+  '       ██████████████████████████████     ',
+  '   ▄█  ▀██  ███   ██    ██   ███  ██▀  █▄ ',
+  '   ███  ███ ███   ██    ██   ███▄███  ███ ',
+  '   ▀██▄████████   ██    ██   ████████▄██▀ ',
+  '    ▀███▀ ▀████   ██    ██   ████▀ ▀███▀  ',
+  '     ▀███▄  ▀███████    ███████▀  ▄███▀   ',
+  '       ▀███    ▀▀██████████▀▀▀   ███▀     ',
+  '         ▀    ▄▄▄    ██    ▄▄▄    ▀       ',
+  '               ▀████████████▀             ',
+}
+db.custom_center = {
+      {icon = '  ',
+      desc = 'Recently latest session                 ',
+      shortcut = 'SPC s l',
+      action ='SessionLoad'},
+      {icon = '  ',
+      desc = 'Recently opened files                   ',
+      action =  'DashboardFindHistory',
+      shortcut = 'SPC f h'},
+      {icon = '  ',
+      desc = 'Find  File                              ',
+      action = 'Telescope find_files find_command=rg,--hidden,--files',
+      shortcut = 'SPC f f'},
+      {icon = '  ',
+      desc ='File Browser                            ',
+      action =  'Telescope file_browser',
+      shortcut = 'SPC f b'},
+      {icon = '  ',
+      desc = 'Find  word                              ',
+      action = 'Telescope live_grep',
+      shortcut = 'SPC f w'},
+    }
+
 require'nvim-treesitter.configs'.setup{
     highlight = { enable = true }
 

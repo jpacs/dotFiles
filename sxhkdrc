@@ -10,6 +10,9 @@ super + @space
 # make sxhkd reload its configuration files:
 super + Escape
 	pkill -USR1 -x sxhkd
+# rofi emoji thang
+super + e
+    grep -v "#" .local/bin/emoji | rofi -dmenu -l 20 -window-title 😀 -theme ${HOME}/.config/polybar/scripts/rofi/launcher.rasi | awk '{print $1}' | tr -d '\n' | xclip -selection clipboard
 
 #
 # bspwm hotkeys
@@ -43,7 +46,7 @@ super + ctrl + {m,x,y,z}
 #
 # focus/swap
 #
-# focus the node in the given direction
+# focus/move the node in the given direction
 super + {_,shift + }{h,j,k,l}
 	bspc node -{f,s} {west,south,north,east}
 # focus the node for the given path jump
@@ -105,7 +108,8 @@ super + {Left,Down,Up,Right}
 #
 # run wallpaper random cycler
 super + alt + w
-	$HOME/.local/bin/wallcycle.sh
+	$HOME/.local/bin/wallcycle.sh && $HOME/.local/bin/kitty_colors.sh
+
 # switch keyboard layout
 super + alt + o
     $HOME/.local/bin/key-lay-switch.sh
@@ -114,16 +118,19 @@ super + alt + o
 # media controls
 #
 # mpc/ncmpcpp volume control
-XF86Audio{RaiseVolume,LowerVolume}
+shift + XF86Audio{RaiseVolume,LowerVolume}
 	mpc -q volume {+1,-1}
 # mpc/nacmpcpp next previous
 XF86Audio{Next,Prev}
-	mpc {next,prev}
+	notify-send "$(mpc {next,prev} | head -1)"
+# mpc/nacmpcpp next previous
+XF86Audio{Play}
+	notify-send "$(mpc {toggle} | head -1)"
 # mixed unshifted Mute but muting pulseaudio
 XF86Audio{Mute}
 	pactl set-sink-mute 0 toggle
 # pulseaudio volume control
-shift + XF86Audio{RaiseVolume,LowerVolume}
+XF86Audio{RaiseVolume,LowerVolume}
 	pactl set-sink-volume 0 {+1%,-1%}
 # enable/disable systemd mpc
 # pulseaudio volume control

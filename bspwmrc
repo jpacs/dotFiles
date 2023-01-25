@@ -9,9 +9,9 @@ bspc monitor -d I II III IV V VI VII VIII IX
 # Set the border colors.
 bspc config normal_border_color "$shade2"
 bspc config active_border_color "$shade2"
-bspc config focused_border_color "$shade4"
+bspc config focused_border_color "$shade6"
 
-bspc config border_width         3
+bspc config border_width         4
 bspc config window_gap          16
 
 bspc config split_ratio          0.52
@@ -26,4 +26,5 @@ bspc rule -a Chromium desktop='^2'
 bspc rule -a mplayer2 state=floating
 bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
+bspc rule -a Steam desktop=^3 state=fullscreen manage=on layer=normal focus=on
 #bspc rule -a Kitty desktop='^6' state=floating rectangle="500x500+0+0" center=true && kitty ncmpcpp -s clock
